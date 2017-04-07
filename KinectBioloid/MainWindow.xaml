@@ -1,0 +1,25 @@
+﻿<Window x:Class="KinectBioloid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinectBioloid"
+        mc:Ignorable="d"
+        Title="KinectBioloid" Height="700" Width="900">
+    <Grid Name="layoutGrid" Margin="10 0 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="600"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" TextAlignment="Center" FontSize="20">Kinect Bioloid</TextBlock>
+        
+        <Grid Grid.Row="1" ClipToBounds="True">
+            <Image Name="ColorImage" Width="640" Height="480" Source="{Binding ImageSource}" />
+            <Image Name="SkeletonImage" Width="640" Height ="480" Source="{Binding SkeletonSource}"></Image>
+        </Grid>
+        
+        <TextBlock Grid.Row="2" TextAlignment="Center" FontSize="20">Coś tam</TextBlock>
+        
+    </Grid>
+</Window>
