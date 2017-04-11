@@ -92,16 +92,18 @@ namespace KinectBioloid.SensorLayer
                         Joint rightHandJoint = skeleton.Joints[JointType.HandRight];
                         Joint leftHandJoint = skeleton.Joints[JointType.HandLeft];
 
-                        if (rightHandJoint.TrackingState == JointTrackingState.Tracked &&
-                            leftHandJoint.TrackingState == JointTrackingState.Tracked)
+                        if (rightHandJoint.TrackingState != JointTrackingState.NotTracked &&
+                            leftHandJoint.TrackingState != JointTrackingState.NotTracked)
                         {
+                            var leftHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToColorPoint(leftHandJoint.Position,ColorImageFormat.RgbResolution640x480Fps30);
+                            var rightHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToColorPoint(rightHandJoint.Position,ColorImageFormat.RgbResolution640x480Fps30);
                             if (this.SkeletonUpdated != null)
                             {
                                 this.SkeletonUpdated(this,
                                     new SkeletonEventArgs()
                                     {
-                                        RightHandPosition = rightHandJoint.Position,
-                                        LeftHandPosition = leftHandJoint.Position
+                                        RightHandPosition = rightHandPosition,
+                                        LeftHandPosition = leftHandPosition
                                     });
                             }
                         }

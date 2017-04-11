@@ -51,7 +51,7 @@ namespace KinectBioloid.SensorLayer
             return image;
         }
 
-        private Point PointToScreen(SkeletonPoint skeletonPoint)
+        private Point PointToScreen(ColorImagePoint skeletonPoint)
         {
             return new Point(skeletonPoint.X,skeletonPoint.Y);
         }

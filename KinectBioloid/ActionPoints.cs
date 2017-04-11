@@ -15,12 +15,13 @@ namespace KinectBioloid
         {
             var actionPoints = new List<ActionPoint>();
 
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 20, Y = 40 ,PositionName = ActionPointsEnum.LeftUp});
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 200, Y = 40, PositionName = ActionPointsEnum.LeftMid });
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 360, Y = 40, PositionName = ActionPointsEnum.LeftDown });
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 20, Y = 620, PositionName = ActionPointsEnum.RightUp });
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 200, Y = 620, PositionName = ActionPointsEnum.RightMid });
-            actionPoints.Add(new ActionPoint() {Radius = 3, X = 360, Y = 620, PositionName = ActionPointsEnum.RightDown });
+            actionPoints.Add(new ActionPoint() { Radius = 20, X = 0, Y = 0, PositionName = ActionPointsEnum.NotMatch });
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 20 ,PositionName = ActionPointsEnum.LeftUp});
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 200, PositionName = ActionPointsEnum.LeftMid });
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 360, PositionName = ActionPointsEnum.LeftDown });
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 400, Y = 20, PositionName = ActionPointsEnum.RightUp });
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 400, Y = 200, PositionName = ActionPointsEnum.RightMid });
+            actionPoints.Add(new ActionPoint() {Radius = 20, X = 400, Y = 360, PositionName = ActionPointsEnum.RightDown });
 
             return actionPoints;
         }
