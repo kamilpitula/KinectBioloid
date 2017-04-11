@@ -23,8 +23,8 @@ namespace KinectBioloid.RobotLayer
         private void _kinectService_SkeletonUpdated(object sender, SkeletonEventArgs e)
         {
             
-            var leftHand = new Point(e.LeftHandPosition.X,e.LeftHandPosition.Y);
-            var rightHand = new Point(e.RightHandPosition.X,e.RightHandPosition.Y);
+            var leftHand = new Point(e.LeftHandPosition.X ,e.LeftHandPosition.Y );
+            var rightHand = new Point(e.RightHandPosition.X ,e.RightHandPosition.Y );
 
             ActionPointsEnum leftHandPosition = ActionPointsEnum.NotMatch;
             ActionPointsEnum rightHandPosition = ActionPointsEnum.NotMatch;

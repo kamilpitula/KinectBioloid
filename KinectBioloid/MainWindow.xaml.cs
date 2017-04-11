@@ -23,15 +23,32 @@ namespace KinectBioloid
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IKinectService kinectService;
+        private IPositionChecker positionChecker;
+        private IRobot robot;
+        private ISkeletonDrawer skeletonDrawer;
+
         public MainWindow()
         {
             InitializeComponent();
-            
-            IKinectService kinectService = new KinectService();
-            IPositionChecker positionChecker = new PositionChecker(kinectService);
-            IRobot robot = new Robot(positionChecker);
-            ISkeletonDrawer skeletonDrawer = new SkeletonDrawer();
+            kinectService = new KinectService();
+            positionChecker = new PositionChecker(kinectService);
+            robot = new Robot(positionChecker);
+            skeletonDrawer = new SkeletonDrawer();
+
+            this.Closing += MainWindow_Closing;
+
+
             this.DataContext = new MainWindowViewModel(kinectService, skeletonDrawer);
+
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (kinectService != null)
+            {
+                kinectService.Cleanup();
+            }
         }
     }
 }

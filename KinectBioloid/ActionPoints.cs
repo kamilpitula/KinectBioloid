@@ -15,7 +15,7 @@ namespace KinectBioloid
         {
             var actionPoints = new List<ActionPoint>();
 
-            actionPoints.Add(new ActionPoint() { Radius = 20, X = 0, Y = 0, PositionName = ActionPointsEnum.NotMatch });
+            
             actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 20 ,PositionName = ActionPointsEnum.LeftUp});
             actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 200, PositionName = ActionPointsEnum.LeftMid });
             actionPoints.Add(new ActionPoint() {Radius = 20, X = 40, Y = 360, PositionName = ActionPointsEnum.LeftDown });

@@ -14,9 +14,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" TextAlignment="Center" FontSize="20">Kinect Bioloid</TextBlock>
         
-        <Grid Grid.Row="1" ClipToBounds="True">
-            <Image Name="ColorImage" Width="640" Height="480" Source="{Binding ImageSource}" />
-            <Image Name="SkeletonImage" Width="640" Height ="480" Source="{Binding SkeletonSource}"></Image>
+        <Grid Grid.Row="1" ClipToBounds="True" Width="640" Height="480">
+            <Image Name="ColorImage" Source="{Binding ImageSource}"  />
+            <Image Name="SkeletonImage" Source="{Binding SkeletonSource}"/>
+            
         </Grid>
         
         <TextBlock Grid.Row="2" TextAlignment="Center" FontSize="20">Coś tam</TextBlock>

@@ -18,7 +18,7 @@ namespace KinectBioloid.SensorLayer
 
         public SkeletonDrawer()
         {
-            _rightHandBrush = Brushes.Blue;
+            _rightHandBrush = Brushes.Aqua;
             _leftHandBrush = Brushes.Chartreuse;
             _actionPointBrush = Brushes.Crimson;
         }
@@ -51,9 +51,10 @@ namespace KinectBioloid.SensorLayer
             return image;
         }
 
-        private Point PointToScreen(ColorImagePoint skeletonPoint)
+        private Point PointToScreen(DepthImagePoint skeletonPoint)
         {
-            return new Point(skeletonPoint.X,skeletonPoint.Y);
+
+            return new Point(skeletonPoint.X ,skeletonPoint.Y);
         }
     }
 }

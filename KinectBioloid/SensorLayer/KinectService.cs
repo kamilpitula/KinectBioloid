@@ -31,11 +31,12 @@ namespace KinectBioloid.SensorLayer
             {
                 _sensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
                 _sensor.SkeletonStream.Enable();
+                _sensor.DepthStream.Enable();
                 _colorPixels = new byte[_sensor.ColorStream.FramePixelDataLength];
                 _colorBitmap = new WriteableBitmap(_sensor.ColorStream.FrameWidth, _sensor.ColorStream.FrameHeight, 96.0,
                     96.0, PixelFormats.Bgr32, null);
-                _sensor.SkeletonFrameReady += _sensor_SkeletonFrameReady;
-                _sensor.ColorFrameReady += _sensor_ColorFrameReady;
+               
+                _sensor.AllFramesReady += _sensor_AllFramesReady;
                 try
                 {
                     _sensor.Start();
@@ -49,7 +50,7 @@ namespace KinectBioloid.SensorLayer
            
         }
 
-        private void _sensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        private void _sensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
             using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
             {
@@ -68,10 +69,7 @@ namespace KinectBioloid.SensorLayer
 
                 }
             }
-        }
 
-        private void _sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
             var skeletons = new Skeleton[0];
 
             using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
@@ -95,8 +93,8 @@ namespace KinectBioloid.SensorLayer
                         if (rightHandJoint.TrackingState != JointTrackingState.NotTracked &&
                             leftHandJoint.TrackingState != JointTrackingState.NotTracked)
                         {
-                            var leftHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToColorPoint(leftHandJoint.Position,ColorImageFormat.RgbResolution640x480Fps30);
-                            var rightHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToColorPoint(rightHandJoint.Position,ColorImageFormat.RgbResolution640x480Fps30);
+                            var leftHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHandJoint.Position, DepthImageFormat.Resolution640x480Fps30);
+                            var rightHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHandJoint.Position, DepthImageFormat.Resolution640x480Fps30);
                             if (this.SkeletonUpdated != null)
                             {
                                 this.SkeletonUpdated(this,
@@ -121,7 +119,11 @@ namespace KinectBioloid.SensorLayer
                     }
                 }
             }
+
+
         }
+
+        
 
         public void Cleanup()
         {

@@ -71,6 +71,7 @@ namespace KinectBioloid.ViewModels
         private void _kinectService_SkeletonUpdated(object sender, SkeletonEventArgs e)
         {
             SkeletonSource = _skeletonDrawer.DrawSkeleton(e);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
