@@ -28,8 +28,12 @@ namespace KinectBioloid
         private IRobot robot;
         private ISkeletonDrawer skeletonDrawer;
 
+        public const int DEFAULT_PORTNUM = 5; // COM3
+        public const int TIMEOUT_TIME = 1000; // msec
+
         public MainWindow()
         {
+
             InitializeComponent();
             kinectService = new KinectService();
             positionChecker = new PositionChecker(kinectService);

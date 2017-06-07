@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Kinect;
+using ROBOTIS;
 
 namespace KinectBioloid.SensorLayer
 {
@@ -19,6 +20,7 @@ namespace KinectBioloid.SensorLayer
 
         public void Initialize()
         {
+
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
                 if (potentialSensor.Status == KinectStatus.Connected)
@@ -93,8 +95,9 @@ namespace KinectBioloid.SensorLayer
                         if (rightHandJoint.TrackingState != JointTrackingState.NotTracked &&
                             leftHandJoint.TrackingState != JointTrackingState.NotTracked)
                         {
-                            var leftHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHandJoint.Position, DepthImageFormat.Resolution640x480Fps30);
-                            var rightHandPosition = _sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHandJoint.Position, DepthImageFormat.Resolution640x480Fps30);
+                            CoordinateMapper cm = new CoordinateMapper(_sensor);
+                            var leftHandPosition = cm.MapSkeletonPointToColorPoint(leftHandJoint.Position, ColorImageFormat.RgbResolution640x480Fps30);
+                            var rightHandPosition = cm.MapSkeletonPointToColorPoint(rightHandJoint.Position, ColorImageFormat.RgbResolution640x480Fps30);
                             if (this.SkeletonUpdated != null)
                             {
                                 this.SkeletonUpdated(this,

@@ -9,12 +9,12 @@ using Microsoft.Kinect;
 
 namespace KinectBioloid.SensorLayer
 {
-    public class SkeletonDrawer:ISkeletonDrawer
+    public class SkeletonDrawer : ISkeletonDrawer
     {
         private readonly Brush _rightHandBrush;
         private readonly Brush _leftHandBrush;
         private readonly Brush _actionPointBrush;
-        private const double HandCenterThickness = 3;
+        private const double HandCenterThickness = 5;
 
         public SkeletonDrawer()
         {
@@ -33,17 +33,18 @@ namespace KinectBioloid.SensorLayer
 
             using (DrawingContext dc = drawingGroup.Open())
             {
+                dc.DrawRectangle(Brushes.Transparent, null, new Rect(0.0, 0.0, 640, 480));
                 var actionPointsToDraw = ActionPoints.GetActionPoints();
 
                 foreach (var actionPoint in actionPointsToDraw)
                 {
                     dc.DrawEllipse(_actionPointBrush, null, new Point(actionPoint.X, actionPoint.Y), actionPoint.Radius,
                         actionPoint.Radius);
-                } 
+                }
 
                 if (leftHand != null && rightHand != null)
                 {
-                    dc.DrawEllipse(_rightHandBrush,null,PointToScreen(rightHand),HandCenterThickness,HandCenterThickness);
+                    dc.DrawEllipse(_rightHandBrush, null, PointToScreen(rightHand), HandCenterThickness, HandCenterThickness);
                     dc.DrawEllipse(_leftHandBrush, null, PointToScreen(leftHand), HandCenterThickness, HandCenterThickness);
                 }
             }
@@ -51,10 +52,10 @@ namespace KinectBioloid.SensorLayer
             return image;
         }
 
-        private Point PointToScreen(DepthImagePoint skeletonPoint)
+        private Point PointToScreen(ColorImagePoint skeletonPoint)
         {
 
-            return new Point(skeletonPoint.X ,skeletonPoint.Y);
+            return new Point(skeletonPoint.X, skeletonPoint.Y);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace KinectBioloid.SensorLayer
     public class SkeletonEventArgs:EventArgs
     {
         
-        public DepthImagePoint RightHandPosition { get; set; }
-        public DepthImagePoint LeftHandPosition { get; set; }
+        public ColorImagePoint RightHandPosition { get; set; }
+        public ColorImagePoint LeftHandPosition { get; set; }
     }
 }
